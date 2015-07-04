@@ -12,7 +12,7 @@
 </head>
 <body>
         <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
+           <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">E-Post-Office</a>
             </div>
@@ -24,13 +24,13 @@
             <li><a href="history_post.jsp">History</a></li>
             <li><a href="stamp.jsp">Philately</a></li>
             <li><a href="termsAndConditions.jsp">Government Documentation</a></li>
-            <li class="divider">
-            <li><a href="login.jsp">Contact Us</a></li>
+            <li class="divider"> 
+            <li><a href="contacts.jsp">Contact Us</a></li>
           </ul>
         </li>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Static Merchandising  <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="catalogue.html">Postcard</a></li>
+            <li><a href="postcards.jsp">Postcard</a></li>
             <li><a href="stamp.jsp">Philately</a></li>
             <li><a href="#">Mobile</a></li>
             <li><a href="packets.jsp">Packets</a></li>
@@ -45,7 +45,6 @@
         </li>
       </ul>
 
-     
           </div>
 </nav> 
 

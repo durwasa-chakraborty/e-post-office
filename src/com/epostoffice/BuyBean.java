@@ -83,6 +83,23 @@ public class BuyBean {
     }
     public String getAmount()
     {
+    	Double value_sum=0.00;
+    	try
+    	{
+    		Class.forName("com.mysql.jdbc.Driver");
+			connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ePostOffice", "root", "root");		
+			statement = (Statement) connection.createStatement();
+			String sql = "SELECT * FROM amount where type = 0";
+			ResultSet rs = statement.executeQuery(sql);
+			if(rs.next())
+				 value_sum= rs.getDouble("amount");
+    		
+    	}
+    	catch(Exception ex)
+    	{
+    		ex.getCause();
+    	}
+    	this.Amount += value_sum;
         return Amount.toString();
     }
     public boolean validate()

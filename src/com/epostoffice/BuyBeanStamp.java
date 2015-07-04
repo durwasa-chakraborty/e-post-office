@@ -1,6 +1,5 @@
 package com.epostoffice;
 import java.sql.*;
-import java.sql.DriverManager;
 
 
 public class BuyBeanStamp {
@@ -79,6 +78,23 @@ public class BuyBeanStamp {
 
 	    public String getAmount()
 	    {
+	    	Double value_sum=0.00;
+	    	try
+	    	{
+	    		Class.forName("com.mysql.jdbc.Driver");
+				connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ePostOffice", "root", "root");		
+				statement = (Statement) connection.createStatement();
+				String sql = "SELECT * FROM amount where type = 1";
+				ResultSet rs = statement.executeQuery(sql);
+				while(rs.next())
+					 value_sum = rs.getDouble("amount");
+	    		
+	    	}
+	    	catch(Exception ex)
+	    	{
+	    		ex.getCause();
+	    	}
+	    	this.AmountStamp += value_sum;
 	        return AmountStamp.toString();
 	    }
 	    
