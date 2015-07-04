@@ -77,7 +77,9 @@
       out.print(rgbean_address.getAddress());%></td>
     </tr>
     
-   
+ 
+   	
+ 
   </tbody>
 </table> 
 

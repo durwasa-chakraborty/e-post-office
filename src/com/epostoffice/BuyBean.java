@@ -10,8 +10,6 @@ public class BuyBean {
     private Connection connection = null;
     Statement statement;
     
-    
-    
     public String getInlandPostcards()
     {
         
@@ -89,30 +87,20 @@ public class BuyBean {
     }
     public boolean validate()
     {
-        return true;
-    }
-    void setSaveAmount()
-    {
-    	try{
+    	try
+    	{
     		Class.forName("com.mysql.jdbc.Driver");
-    		connection = (Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/ePostOffice","root","root");
+    		connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ePostOffice", "root", "root");
     		statement = (Statement)connection.createStatement();
-    		String sql = "UPDATE amount SET amount = "+getAmount()+" where type = 1";
-    		ResultSet rs = statement.executeQuery(sql);
-    		if(rs.next())
-    			this.Amount = rs.getDouble("amount");
+    		String sql = "UPDATE amount SET amount = "+"'"+getAmount()+"'"+"where type=1";
+    		statement.executeUpdate(sql);
     	}
     	catch(Exception ex)
     	{
     		ex.getCause();
     	}
+    	return true;
     }
-    
-    public double getSaveAmount()
-    {
-    	
-    	return Amount;
-    }
-    
+
 
 }

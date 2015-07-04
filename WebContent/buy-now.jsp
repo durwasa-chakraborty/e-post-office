@@ -96,7 +96,7 @@
     <h3>Amount</h3>
     <h4>
     	INR.<%
-    	out.print(BbeanP.getSaveAmount());
+    	out.print(BbeanP.getAmount());
     	%>
 	  </h4>
 	

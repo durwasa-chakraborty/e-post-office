@@ -1,7 +1,10 @@
 package com.epostoffice;
+import java.sql.*;
 
 public class LoginBean {
 	private String name,password;
+	private Connection connection=null;
+	Statement statement;
 	
 public String getName() {
 	return name;
@@ -21,13 +24,29 @@ public void setPassword(String password)
 }
 public boolean validate()
 {
-	if(password.equals("admin"))
+	boolean validate_value=false;
+	try
 	{
-		return true;
+		Class.forName("com.mysql.jdbc.Driver");
+		connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ePostOffice", "root", "root");		
+		statement = (Statement) connection.createStatement();
+		String sql = "SELECT password FROM registration where username = "+"'"+getName()+"'";
+		ResultSet rs = statement.executeQuery(sql);
+		if(rs.next())
+		{
+			String eval = rs.getString("password");
+			if(eval.equals(getPassword()))
+				validate_value = true;
+			else
+				validate_value = false;			
+		}
+			
 	}
-	else
+	
+	catch(Exception ex)
 	{
-		return false;
+		ex.getCause();
 	}
+	return validate_value;
 }
 }

@@ -1,4 +1,5 @@
 package com.epostoffice;
+import java.sql.*;
 
 
 public class RegBean 
@@ -8,6 +9,8 @@ public class RegBean
 	private String email;
 	private String password;
 	private String address;
+	private Connection connection=null;
+	Statement stmt;
 	public String getUsername(){
 		return username;
 	}
@@ -36,26 +39,26 @@ public class RegBean
 	}
 	public boolean validate()
 	{
-		return true;
+		boolean validate_value = false;
+		try{
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ePostOffice", "root", "root");
+			stmt = (Statement)connection.createStatement();
+			
+			String sql = "INSERT INTO info (username, email, password, address) VALUES ("+"'"+getUsername()+"'"+","+"'"+getEmail()+"'"+","+"'"+getPassword()+"'"+","+"'"+getAddress()+"')";
+			stmt.executeUpdate(sql);
+			validate_value=true;
+			
+			
+		}
+		catch(Exception ex)
+		{
+			ex.getCause();
+		}
+		return validate_value;
 	}
-	/*public String getDatabaseData()
-	{
-		try
-		{
-			getUserName();
-			getEmail();
-			getPassword();
-			
-			
-			
-			return "The contents of the proceedings have been saved";
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			return "Error";
-		}
-	}*/
+	
 	
 
 	

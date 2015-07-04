@@ -20,7 +20,6 @@ public class BuyNow extends HttpServlet{
 		Bbean.setCommemorativePostcards(commemorativePostcards);
 		Bbean.setInternationalPostcards(internationalPostcards);
 		Bbean.setPicturePostcards(picturePostcards);
-		Bbean.setSaveAmount();
 	
 		request.setAttribute("Bbean",Bbean);
 		boolean status = Bbean.validate();

@@ -1,4 +1,6 @@
 package com.epostoffice;
+import java.sql.*;
+import java.sql.DriverManager;
 
 
 public class BuyBeanStamp {
@@ -6,6 +8,8 @@ public class BuyBeanStamp {
     private String commemorativeStamps;
     private String internationalStamps;
     private String parcelStamps;
+    private Connection connection = null;
+    private Statement statement;
 
     private Double AmountStamp=0.00; 
    
@@ -72,11 +76,7 @@ public class BuyBeanStamp {
 	        parcelStamps = parcelStamps_value.toString();
 	        this.parcelStamps = parcelStamps;
 	    }
-	    
-//	    public void setAmount(Double AmountStamp)
-//	    {
-//	        this.AmountStamp= AmountStamp;
-//	    }
+
 	    public String getAmount()
 	    {
 	        return AmountStamp.toString();
@@ -84,6 +84,18 @@ public class BuyBeanStamp {
 	    
 	    public boolean validate()
 	    {
+	    	try
+	    	{
+	    		Class.forName("com.mysql.jdbc.Driver");
+	    		connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ePostOffice", "root", "root");
+	    		statement = (Statement)connection.createStatement();
+	    		String sql = "UPDATE amount SET amount = "+"'"+getAmount()+"'"+"where type=0";
+	    		statement.executeUpdate(sql);
+	    	}
+	    	catch(Exception ex)
+	    	{
+	    		ex.getCause();
+	    	}
 	    	return true;
 	    }
 
